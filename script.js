@@ -40,20 +40,78 @@ function deleteLast() {
     display.value = display.value.slice(0, -1);
 }
 
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error('Division by zero');
+    }
+    return a / b;
+}
+
+function evaluateExpression(expression) {
+    const tokens = expression.match(/(\d+\.?\d*|[+\-*/])/g);
+    if (!tokens) return NaN;
+
+    let result = parseFloat(tokens[0]);
+
+    for (let i = 1; i < tokens.length; i += 2) {
+        const operator = tokens[i];
+        const operand = parseFloat(tokens[i + 1]);
+
+        if (isNaN(operand)) return NaN;
+
+        switch (operator) {
+            case '+':
+                result = add(result, operand);
+                break;
+            case '-':
+                result = subtract(result, operand);
+                break;
+            case '*':
+                result = multiply(result, operand);
+                break;
+            case '/':
+                result = divide(result, operand);
+                break;
+            default:
+                return NaN;
+        }
+    }
+
+    return result;
+}
+
 // Função para calcular o resultado
 function calculate() {
     try {
         if (display.value === '') {
             return;
         }
-        
+
         // Substitui o símbolo × por * para a avaliação
         let expression = display.value.replace(/×/g, '*');
-        
+
         // Verifica se a expressão é válida
         if (/^[0-9+\-*/.() ]+$/.test(expression)) {
-            let result = eval(expression);
-            
+            let result;
+
+            if (expression.includes('(') || expression.includes(')')) {
+                result = eval(expression);
+            } else {
+                result = evaluateExpression(expression);
+            }
+
             // Verifica se o resultado é um número válido
             if (isNaN(result) || !isFinite(result)) {
                 display.value = 'Erro';
@@ -67,7 +125,7 @@ function calculate() {
         } else {
             display.value = 'Erro';
         }
-        
+
         shouldResetDisplay = true;
     } catch (error) {
         display.value = 'Erro';

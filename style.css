@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,40 +71,40 @@ body {
 }
 
 .number {
-    background: #95a5a6;
-    color: #2c3e50;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
 }
 
 .number:hover {
-    background: #bdc3c7;
+    background: linear-gradient(135deg, #5dade2, #3498db);
 }
 
 .operator {
-    background: #e67e22;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
     color: white;
 }
 
 .operator:hover {
-    background: #d35400;
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
 }
 
 .equals {
-    background: #27ae60;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
     color: white;
     grid-row: span 2;
 }
 
 .equals:hover {
-    background: #229954;
+    background: linear-gradient(135deg, #58d68d, #2ecc71);
 }
 
 .clear {
-    background: #e74c3c;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
     color: white;
 }
 
 .clear:hover {
-    background: #c0392b;
+    background: linear-gradient(135deg, #ec7063, #e74c3c);
 }
 
 .zero {
